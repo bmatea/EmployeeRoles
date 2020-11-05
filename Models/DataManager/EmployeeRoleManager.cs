@@ -8,7 +8,7 @@ using zadatak.Models.Repository;
 
 namespace zadatak.Models.DataManager
 {
-    public class EmployeeRoleManager : IDataRepository<EmployeeRole>
+    public class EmployeeRoleManager : IEmployeeRoleRepository
     {
         readonly DatabaseContext context;
 
@@ -92,23 +92,6 @@ namespace zadatak.Models.DataManager
             }
         }
 
-        public List<int> GetRolesForEmployee(int employeeId)
-        {
-            try
-            {
-                List<EmployeeRole> ers = context.EmployeeRoles.Where(er => er.EmployeeId == employeeId).ToList<EmployeeRole>();
-                var roleIds = new List<int>();
-                foreach(var er in ers)
-                {
-                    roleIds.Add(er.RoleId);
-                }
-                return roleIds;
-            } catch
-            {
-                throw;
-            }
-        }
-
         public int Delete(int id)
         {
             try
@@ -134,6 +117,24 @@ namespace zadatak.Models.DataManager
                 context.SaveChanges();
                 return 1;
             } catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<int> getRolesForEmployee(int employeeId)
+        {
+            try
+            {
+                List<EmployeeRole> ers = context.EmployeeRoles.Where(er => er.EmployeeId == employeeId).ToList<EmployeeRole>();
+                var roleIds = new List<int>();
+                foreach (var er in ers)
+                {
+                    roleIds.Add(er.RoleId);
+                }
+                return roleIds;
+            }
+            catch
             {
                 throw;
             }

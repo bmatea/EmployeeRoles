@@ -15,11 +15,11 @@ namespace zadatak.Controllers
     public class EmployeeRoleController : ControllerBase
     {
 
-        private  IDataRepository<EmployeeRole> dal;
+        private  IEmployeeRoleRepository repo;
 
-        public EmployeeRoleController(IDataRepository<EmployeeRole> repo)
+        public EmployeeRoleController(IEmployeeRoleRepository repo)
         {
-            this.dal = repo;
+            this.repo = repo;
         }
 
 
@@ -27,15 +27,14 @@ namespace zadatak.Controllers
         [Route("api/EmployeeRole/All")]
         public IEnumerable<EmployeeRole> Get()
         {
-            return dal.GetAll();
+            return repo.GetAll();
         }
 
         [HttpGet]
         [Route("api/EmployeeRole/GetRolesForEmployee/{id}")]
         public IEnumerable<int> GetRoles(int id)
         {
-            EmployeeRoleManager erm = (EmployeeRoleManager)dal;
-            return erm.GetRolesForEmployee(id);
+            return repo.getRolesForEmployee(id);
         }
 
 
@@ -43,7 +42,7 @@ namespace zadatak.Controllers
         [Route("api/EmployeeRole/Get/{id}")]
         public EmployeeRole Get(int id)
         {
-            return dal.Get(id);
+            return repo.Get(id);
         }
 
 
@@ -51,8 +50,7 @@ namespace zadatak.Controllers
         [Route("api/EmployeeRole/Create/{employeeId}/{roleId}")]
         public int Post(int employeeId, int roleId)
         {
-            EmployeeRoleManager erm = (EmployeeRoleManager)dal;
-            return erm.Add(employeeId, roleId);
+            return repo.Add(employeeId, roleId);
         }
 
 
@@ -60,8 +58,8 @@ namespace zadatak.Controllers
         [Route("api/EmployeeRole/Edit/{id}")]
         public int Put(int id, [FromBody] EmployeeRole newEmployeeRole)
         {
-            EmployeeRole toUpdate = dal.Get(id);
-            return dal.Update(toUpdate, newEmployeeRole);
+            EmployeeRole toUpdate = repo.Get(id);
+            return repo.Update(toUpdate, newEmployeeRole);
         }
 
 
@@ -69,15 +67,14 @@ namespace zadatak.Controllers
         [Route("api/EmployeeRole/Delete/{id}")]
         public int Delete(int id)
         {
-            return dal.Delete(id);
+            return repo.Delete(id);
         }
 
         [HttpDelete]
         [Route("api/EmployeeRole/Delete/{employeeId}/{roleId}")]
         public int Delete(int employeeId, int roleId)
         {
-            EmployeeRoleManager erm = (EmployeeRoleManager)dal;
-            return erm.Delete(employeeId, roleId);
+            return repo.Delete(employeeId, roleId);
         }
     }
 }

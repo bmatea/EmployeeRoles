@@ -30,7 +30,7 @@ namespace zadatak
 
             services.AddScoped<IDataRepository<Employee>, EmployeeManager>();
             services.AddScoped<IDataRepository<Role>, RoleManager>();
-            services.AddScoped<IDataRepository<EmployeeRole>, EmployeeRoleManager>();
+            services.AddScoped<IEmployeeRoleRepository, EmployeeRoleManager>();
 
             services.AddControllersWithViews();
 
