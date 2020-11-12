@@ -9,9 +9,7 @@ namespace zadatak.Models
 {
     public class Role
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

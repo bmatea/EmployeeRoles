@@ -9,11 +9,7 @@ namespace zadatak.Models
 {
     public class Employee
     {
-     
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set;  }
+        public int Id { get; set;  }
 
         public string FullName { get; set;  }
 
