@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using zadatak.Configuration;
 
 namespace zadatak.Models
 {
@@ -18,7 +19,10 @@ namespace zadatak.Models
 
             Initializer.SeedDatabase(modelBuilder);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            // modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeRoleConfiguration());
         }
 
         public DbSet<Employee> Employees { get; set; }
