@@ -10,7 +10,7 @@ The checkboxex  in the table columns enable certain CRUD operations on users suc
 Clone the repo by copying the link above and in your desired directory run `git clone [link]`.
 
 Open the created folder in [Visual Studio](https://visualstudio.microsoft.com/). 
-Click the green Run button on top of the window ( by deafult, web application projects in Visual Studio use IIS as the development server).
+Click the Run button on top of the window ( by deafult, web application projects in Visual Studio use IIS as the development server).
 
 ## Demo
 
